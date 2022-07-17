@@ -20,7 +20,7 @@ function SalesCard() {
 
         const dmin = minDate.toISOString().slice(0, 10);
         const dmax = maxDate.toISOString().slice(0, 10);
-        console.log(minDate);        
+            
         axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`)
             .then(Response => {
                 setSales(Response.data.content);
@@ -67,7 +67,7 @@ function SalesCard() {
                             return (
                                 <tr key={sale.id}>
                                     <td className="show992">{sale.id}</td>
-                                    <td className="show576">{new Date(sale.date).toLocale   DateString()}</td>
+                                    <td className="show576">{new Date(sale.date).toLocaleDateString()}</td>
                                     <td>{sale.sellerName}</td>
                                     <td className="show992">{sale.visited}</td>
                                     <td className="show992">{sale.deals}</td>
@@ -75,7 +75,7 @@ function SalesCard() {
                                     <td>
                                         <div className="dsmeta-red-btn-container">
                                             <div className="dsmeta-red-btn">
-                                                <NotificationBotton />
+                                                <NotificationBotton saleId={sale.id}/>
                                             </div>
                                         </div>
                                     </td>
